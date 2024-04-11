@@ -5,7 +5,7 @@ WORKDIR /var/www/html
 COPY . .
 
 # Aditionnal scripts
-COPY --chmod=755 ./entrypoint.d/ /etc/entrypoint.d/
+# COPY --chmod=755 ./entrypoint.d/ /etc/entrypoint.d/
 
 # Install nodejs
 RUN curl -sL https://deb.nodesource.com/setup_21.x | bash -

@@ -17,7 +17,7 @@
         'value' => $value,
         'extra' => isset($extra['input']) ? $extra['input'] : '',
     ])
-  @elseif(in_array($type, ['text', 'email', 'password', 'datetime']))
+  @elseif(in_array($type, ['text', 'email', 'password', 'datetime', 'number']))
     @include(sprintf('template.form.input.%s', $type), [
         'class' => isset($class['input']) ? $class['input'] : '',
         'id' => $id,

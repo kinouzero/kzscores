@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Str;
 
 use App\Models\Preference;
 
@@ -20,7 +21,25 @@ class PreferenceController extends Controller {
 
     $title = 'Create new preference';
 
-    return view('preference.edit', compact('preference', 'title'));
+    $types = [
+      view('template.form.select.option', ['value' => 'text', 'title' => 'Text', 'selected' => false]),
+      view('template.form.select.option', ['value' => 'number', 'title' => 'Text', 'selected' => false]),
+      view('template.form.select.option', ['value' => 'select', 'title' => 'List', 'selected' => false])
+    ];
+
+    $template_options = [
+      view('template.form.row', [
+        'id'        => null,
+        'value'     => '',
+        'key_value' => '',
+        'type'      => 'text',
+        'key'       => 'options',
+        'label'     => 'Key'
+      ]),
+      view('template.alert', ['color' => 'secondary', 'class' => 'mb-0', 'content' => 'No option yet'])
+    ];
+
+    return view('preference.edit', compact('preference', 'title', 'types', 'template_options'));
   }
 
   public function edit($id) {
@@ -28,7 +47,31 @@ class PreferenceController extends Controller {
 
     $title = sprintf('Edit preference: %s', $preference->name);
 
-    return view('preference.edit', compact('preference', 'title'));
+    $types = [
+      view('template.form.select.option', ['value' => 'text', 'title' => 'Text', 'selected' => $preference->type === 'text']),
+      view('template.form.select.option', ['value' => 'number', 'title' => 'Number', 'selected' => $preference->type === 'number']),
+      view('template.form.select.option', ['value' => 'select', 'title' => 'List', 'selected' => $preference->type === 'select'])
+    ];
+
+    $template_options = [view('template.form.row', [
+      'id'        => null,
+      'value'     => '',
+      'key_value' => '',
+      'type'      => 'text',
+      'key'       => 'options',
+      'label'     => 'Key'
+    ])];
+    if ($preference->options()) foreach ($preference->options() as $k => $v) $template_options[] = view('template.form.row', [
+      'id'        => Str::uuid(),
+      'key_value' => $k ?: '',
+      'value'     => $v ?: '',
+      'type'      => 'text',
+      'key'       => 'options',
+      'label'     => 'Key'
+    ]);
+    else $template_options[] = view('template.alert', ['color' => 'secondary', 'class' => 'mb-0', 'content' => 'No option yet']);
+
+    return view('preference.edit', compact('preference', 'title', 'types', 'template_options'));
   }
 
   public function detail($id) {
@@ -41,9 +84,25 @@ class PreferenceController extends Controller {
   public function store(Request $request) {
     $preference = new Preference();
 
-    $validatedData = $request->validate(['name' => 'required|string']);
+    $args = $request->all();
 
-    $preference->name = $validatedData['name'];
+    $validatedData = $request->validate([
+      'name'        => 'required|string',
+      'key'         => 'required|string',
+      'type'        => 'required|string',
+      'description' => 'string'
+    ]);
+
+    $preference->name        = $validatedData['name'];
+    $preference->key         = $validatedData['key'];
+    $preference->type        = $validatedData['type'];
+    $preference->description = $validatedData['description'];
+
+    // Options
+    $options = [];
+    if ($args['options']) foreach ($args['options'] as $i => $k) if ($v = $args['values'][$i]) $options[$k] = $v;
+    $preference->options = json_encode($options);
+
     $preference->save();
 
     return back()->with('success', 'Preference created successfully.');
@@ -51,7 +110,15 @@ class PreferenceController extends Controller {
 
   public function update(Request $request, $id) {
     $preference = Preference::findOrFail($id);
-    $preference->update($request->all());
+
+    $args = $request->all();
+
+    // Options
+    $options = [];
+    if ($args['options']) foreach ($args['options'] as $i => $k) if ($v = $args['values'][$i]) $options[$k] = $v;
+    $args['options'] = json_encode($options);
+
+    $preference->update($args);
 
     return back()->with('success', 'Preference updated successfully.');
   }

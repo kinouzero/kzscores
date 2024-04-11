@@ -65,6 +65,20 @@ class User extends Authenticatable {
   }
 
   /**
+   * New player
+   */
+  public static function newPlayer($name) {
+    $user = User::create([
+      'name'     => $name,
+      'email'    => sprintf('%s@%s.com', $name, strtolower(env('APP_NAME'))),
+      'password' => bcrypt($name),
+    ]);
+    $user->roles()->attach(Role::where('name', 'player')->first());
+
+    return $user;
+  }
+
+  /**
    * Get user timezone
    */
   public static function getUserTimezone($user) {

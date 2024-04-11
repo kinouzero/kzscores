@@ -50,10 +50,33 @@
           </a>
         </li>
 
-        <li class="header-menu sidebar-item">Manage</li>
-
         @if (auth()->user()->isAdmin())
           <li class="header-menu sidebar-item">Admin</li>
+
+          <li
+            class="dropdown danger sidebar-dropdown {{ Str::contains(Route::current()->getName(), 'game.') || Str::contains(Route::current()->getName(), 'option.') ? 'active' : '' }}">
+            <a href="#">
+              <i class="fas fa-fw fa-users"></i>
+              <span>Games</span>
+            </a>
+            <div class="sidebar-submenu"
+              style="display:{{ Str::contains(Route::current()->getName(), 'game.') || Str::contains(Route::current()->getName(), 'option.') ? 'block' : 'none' }}">
+              <ul class="p-0">
+                <li class="danger {{ Str::contains(Route::current()->getName(), 'game.') ? 'active' : '' }}">
+                  <a href="{{ route('game.index') }}">
+                    <i class="fas fa-fw fa-dice"></i>
+                    <span>Games</span>
+                  </a>
+                </li>
+                <li class="danger {{ Str::contains(Route::current()->getName(), 'option.') ? 'active' : '' }}">
+                  <a href="{{ route('option.index') }}">
+                    <i class="fas fa-fw fa-cogs"></i>
+                    <span>Options</span>
+                  </a>
+                </li>
+              </ul>
+            </div>
+          </li>
 
           <li
             class="dropdown danger sidebar-dropdown {{ Str::contains(Route::current()->getName(), 'user.') || Str::contains(Route::current()->getName(), 'preference.') ? 'active' : '' }}">

@@ -106,6 +106,20 @@ class UserController extends Controller {
     return view('user.detail', compact('user'));
   }
 
+  public function get(Request $request) {
+    $args = $request->all();
+    $users = null;
+    if (isset($args['term'])) $users = User::select('*')->whereRaw(sprintf('unaccent(name) ilike unaccent(\'%%%s%%\')', $args['term']))->get();
+
+    $data = ['results' => []];
+    if ($users) foreach ($users as $user) $data['results'][] = [
+      'id'   => $user->id,
+      'text' => $user->name
+    ];
+
+    return response()->json($data);
+  }
+
   // Actions
   public function store(Request $request) {
     $user = new User();

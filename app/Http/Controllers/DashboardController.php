@@ -2,18 +2,17 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Dashboard;
-use App\Models\Plant;
-use App\Models\Statut;
-use App\Models\Strain;
-use App\Models\User;
-use Illuminate\Http\Request;
+use App\Models\Game;
+use App\Models\Party;
 
 class DashboardController extends Controller {
 
   // Views
   public function dashboard() {
-    return view('dashboard');
+    $games = Game::all();
+    $parties = Party::userParties();
+
+    return view('dashboard', compact('games', 'parties'));
   }
 
   /**

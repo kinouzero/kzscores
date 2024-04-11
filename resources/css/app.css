@@ -132,3 +132,11 @@ hex-input~label {
   background-color: var(--bs-dark) !important;
   color: var(--bs-light) !important;
 }
+
+.border-card {
+  border-left: .3rem solid var(--border-color) !important;
+}
+
+.border-card:hover {
+  border-color: var(--border-color);
+}

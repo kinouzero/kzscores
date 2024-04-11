@@ -9,30 +9,21 @@
 
     <!-- Javascript -->
     <script src="/npm/jquery/dist/jquery.min.js"></script>
+    <script src="/npm/jquery-ui/dist/jquery-ui.min.js"></script>
     <script src="/npm/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
-    <script src="/npm/bootstrap-fileinput/js/fileinput.min.js"></script>
-    <script src="/npm/bootstrap-fileinput/js/plugins/buffer.min.js"></script>
-    <script src="/npm/bootstrap-fileinput/js/plugins/filetype.min.js"></script>
-    <script src="/npm/bootstrap-fileinput/js/plugins/piexif.min.js"></script>
-    <script src="/npm/bootstrap-fileinput/js/locales/{{ app()->getLocale() }}.js"></script>
-    <script src="/npm/bootstrap-fileinput/themes/fa6/theme.min.js"></script>
     <script src="/npm/datatables.net/js/dataTables.min.js"></script>
     <script src="/npm/datatables.net-bs5/js/dataTables.bootstrap5.min.js"></script>
     <script src="/npm/datatables.net-responsive/js/dataTables.responsive.min.js"></script>
     <script src="/npm/datatables.net-responsive-bs5/js/responsive.bootstrap5.min.js"></script>
-    <script src="/npm/lightbox2/dist/js/lightbox.min.js"></script>
     <script src="/npm/select2/dist/js/select2.full.min.js"></script>
     <script src="/npm/select2/dist/js/i18n/{{ app()->getLocale() }}.js"></script>
-    <script src="/npm/masonry-layout/dist/masonry.pkgd.min.js"></script>
     @vite('resources/js/app.js')
 
     <!-- Styles -->
     <link href="/npm/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
-    <link href="/npm/bootstrap-fileinput/css/fileinput.min.css" rel="stylesheet">
     <link href="/npm/@fortawesome/fontawesome-free/css/all.min.css" rel="stylesheet">
     <link href="/npm/datatables.net-bs5/css/dataTables.bootstrap5.min.css" rel="stylesheet">
     <link href="/npm/datatables.net-responsive-bs5/css/responsive.bootstrap5.min.css" rel="stylesheet">
-    <link href="/npm/lightbox2/dist/css/lightbox.min.css" rel="stylesheet">
     <link href="/npm/select2/dist/css/select2.min.css" rel="stylesheet">
     <link href="/npm/select2-bootstrap-5-theme/dist/select2-bootstrap-5-theme.min.css" rel="stylesheet">
   </head>
