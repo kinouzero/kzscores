@@ -95,8 +95,8 @@
                               {{ $user->name }}
                             </div>
                             <span
-                                  class="badge text-bg-{{ ($winner = App\Models\Yams::getWinner($party)) ? ($winner->id === $user->id ? 'success' : 'danger') : 'secondary' }} rounded-pill">
-                              {{ App\Models\Yams::calculTotal($user) }}
+                                  class="badge text-bg-{{ ($winner = App\Models\_Yams::getWinner($party)) ? ($winner->id === $user->id ? 'success' : 'danger') : 'secondary' }} rounded-pill">
+                              {{ App\Models\_Yams::calculTotal($user) }}
                             </span>
                           </li>
                         @endforeach

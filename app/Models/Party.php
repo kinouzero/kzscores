@@ -86,7 +86,7 @@ class Party extends Model {
     $winner = null;
     switch ($this->game->key) {
       case 'yam':
-        $winner = Yams::getWinner($this);
+        $winner = _Yams::getWinner($this);
         break;
     }
 

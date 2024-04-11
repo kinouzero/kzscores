@@ -4,10 +4,13 @@ use Illuminate\Support\Facades\Route;
 
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\DashboardController;
+use App\Http\Controllers\ForgotController;
 use App\Http\Controllers\GameController;
 use App\Http\Controllers\OptionController;
 use App\Http\Controllers\PartyController;
 use App\Http\Controllers\PreferenceController;
+use App\Http\Controllers\RegisterController;
+use App\Http\Controllers\ResetController;
 use App\Http\Controllers\ThemeController;
 use App\Http\Controllers\UserController;
 
@@ -26,6 +29,21 @@ Route::controller(AuthController::class)->group(function () {
   Route::post('/login', 'login');
   Route::post('/logout', 'logout');
 });
+
+// Forgot view
+Route::get('forgot', [ForgotController::class, 'view'])->name('forgot');
+// Send email
+Route::post('forgot', [ForgotController::class, 'send'])->name('forgot.email');
+
+// Reset view
+Route::get('reset/{token}', [ResetController::class, 'view'])->name('password.reset');
+// Reset action
+Route::post('reset', [ResetController::class, 'store'])->name('password.store');
+
+// Register view
+Route::get('register', [RegisterController::class, 'view'])->name('register');
+// Register action
+Route::post('register', [RegisterController::class, 'store'])->name('register.store');
 
 Route::middleware(['auth'])->group(function () {
   // Dashboard

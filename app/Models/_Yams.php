@@ -4,7 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 
-class Yams extends Model {
+class _Yams extends Model {
 
   const numbers = [1 => 'number-1', 2 => 'number-2', 3 => 'number-3', 4 => 'number-4', 5 => 'number-5', 6 => 'number-6'];
   const figures = [

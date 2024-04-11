@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Game;
-use App\Models\Yams;
+use App\Models\_Yams;
 use App\Models\Option;
 use Illuminate\Http\Request;
 
@@ -57,8 +57,8 @@ class PartyController extends Controller {
       $score = collect(json_decode($user->pivot->score, true));
       switch ($party->game->key) {
         case 'yams':
-          $numbers = Yams::numbers;
-          $figures = Yams::figures;
+          $numbers = _Yams::numbers;
+          $figures = _Yams::figures;
           $sheets[] = view(sprintf('template.game.%s', $party->game->key), compact('party', 'user', 'score', 'numbers', 'figures'));
           break;
       }
@@ -174,7 +174,7 @@ class PartyController extends Controller {
     foreach ($party->users()->get() as $user) {
       switch ($party->game->key) {
         case 'yams':
-          $count = Yams::calculTotal($user);
+          $count = _Yams::calculTotal($user);
           break;
       }
       $data[] = ['name' => $user->name, 'count' => $count, 'color' => $winner->id === $user->id ? '#00c853' : '#ff1744'];

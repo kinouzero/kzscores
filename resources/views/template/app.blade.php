@@ -3,8 +3,10 @@
 
   <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="csrf-token" content="{{ csrf_token() }}">
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+    <meta name="csrf-token"
+          content="{{ csrf_token() }}">
     <title>{{ config('app.name', 'kzScores') }}</title>
 
     <!-- Javascript -->
@@ -20,7 +22,8 @@
     @vite('resources/js/app.js')
 
     <!-- Styles -->
-    <link href="/npm/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="/npm/bootstrap/dist/css/bootstrap.min.css"
+          rel="stylesheet">
     <link href="/npm/@fortawesome/fontawesome-free/css/all.min.css" rel="stylesheet">
     <link href="/npm/datatables.net-bs5/css/dataTables.bootstrap5.min.css" rel="stylesheet">
     <link href="/npm/datatables.net-responsive-bs5/css/responsive.bootstrap5.min.css" rel="stylesheet">
@@ -76,6 +79,15 @@
               'content' => sprintf(
                   '<span>%s</span><button type="button" class="btn-close ms-auto" data-bs-dismiss="alert" aria-label="Close"></button>',
                   session('error')),
+          ]) @endif
+
+        @if (session('status'))
+          @include('template.alert', [
+              'color' => 'secondary',
+              'class' => 'd-flex align-items-center',
+              'content' => sprintf(
+                  '<span>%s</span><button type="button" class="btn-close ms-auto" data-bs-dismiss="alert" aria-label="Close"></button>',
+                  session('status')),
           ]) @endif
 
         @yield('content')

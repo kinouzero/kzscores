@@ -9,7 +9,7 @@ use App\Models\Preference;
 use App\Models\Property;
 use App\Models\Role;
 use App\Models\User;
-use App\Models\Yams;
+use App\Models\_Yams;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\Hash;
 
@@ -60,11 +60,11 @@ class DatabaseSeeder extends Seeder {
 
     // $party = Party::create(['game_id' => $yams->id]);
     // $scoreU1 = $scoreU2 = [];
-    // foreach (Yams::numbers as $number => $key) {
+    // foreach (_Yams::numbers as $number => $key) {
     //   $scoreU1[] = [$key => (int)$number * 3];
     //   $scoreU2[] = [$key => (int)$number * 2];
     // }
-    // foreach (Yams::figures as $figure => $props) {
+    // foreach (_Yams::figures as $figure => $props) {
     //   $scoreU1[] = [$figure => $props['max']];
     //   $scoreU2[] = [$figure => $props['min']];
     // }
