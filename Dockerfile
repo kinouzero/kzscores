@@ -4,7 +4,7 @@ WORKDIR /var/www/html
 
 ARG PUID
 ARG PGID
-RUN usermod -u $PUID www-data && groupmod -g $PGID www-data
+RUN docker-php-serversideup-set-id www-data ${PUID} ${PGID}
 
 COPY --chown=www-data:www-data . .
 
