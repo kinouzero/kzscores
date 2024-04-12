@@ -1,22 +1,27 @@
-<button id="show-sidebar" class="btn btn-{{ auth()->user()->getTheme() === 'light' ? 'dark' : 'light' }}"
-  style="padding-left: .60rem">
+<button class="btn btn-{{ auth()->user()->getTheme() === 'light' ? 'dark' : 'light' }}"
+        id="show-sidebar"
+        style="padding-left: .60rem">
   <i class="fas fa-bars"></i>
 </button>
 
-<div id="sidebar" class="sidebar-wrapper">
+<div class="sidebar-wrapper"
+     id="sidebar">
 
   <div class="sidebar-content pb-2">
     <div class="sidebar-item text-white sidebar-brand">
-      <a href="/" class="d-flex align-items-center justify-content-center">
-        <i class="fas fa-dice fa-rotate-by" style="--fa-rotate-angle: -25deg;"></i>
+      <a class="d-flex align-items-center justify-content-center"
+         href="/">
+        <i class="{{ env('APP_ICON', 'fas fa-dice') }} fa-rotate-by"
+           style="--fa-rotate-angle: -25deg;"></i>
         <span class="sidebar-title ms-2">{{ config('app.name') }}</span>
       </a>
-      <div id="close-sidebar" class="ms-auto"><i class="fas fa-times"></i></div>
+      <div class="ms-auto"
+           id="close-sidebar"><i class="fas fa-times"></i></div>
     </div>
 
     <div class="sidebar-item sidebar-header d-flex align-items-center">
-      <a href="{{ route('user.edit', ['id' => auth()->user()->id]) }}"
-        class="user-info d-flex align-items-center me-auto">
+      <a class="user-info d-flex align-items-center me-auto"
+         href="{{ route('user.edit', ['id' => auth()->user()->id]) }}">
         <div class="user-pic me-2">
           <img src="{{ \Creativeorange\Gravatar\Facades\Gravatar::get(auth()->user()->email) }}" />
         </div>
@@ -31,11 +36,18 @@
           </div>
         </div>
       </a>
-      <a href="#" class="btn-form" data-bs-toggle="tooltip" title="Deconnexion" data-bs-placement="right"
-        data-form="#logout-form">
+      <a class="btn-form"
+         data-bs-toggle="tooltip"
+         data-bs-placement="right"
+         data-form="#logout-form"
+         href="#"
+         title="Deconnexion">
         <i class="fas fa-arrow-right-from-bracket"></i>
       </a>
-      <form id="logout-form" method="POST" action="{{ route('logout') }}" style="display: none;">
+      <form id="logout-form"
+            style="display: none;"
+            method="POST"
+            action="{{ route('logout') }}">
         @csrf
       </form>
     </div>
@@ -54,13 +66,13 @@
           <li class="header-menu sidebar-item">Admin</li>
 
           <li
-            class="dropdown danger sidebar-dropdown {{ Str::contains(Route::current()->getName(), 'game.') || Str::contains(Route::current()->getName(), 'option.') ? 'active' : '' }}">
+              class="dropdown danger sidebar-dropdown {{ Str::contains(Route::current()->getName(), 'game.') || Str::contains(Route::current()->getName(), 'option.') ? 'active' : '' }}">
             <a href="#">
               <i class="fas fa-fw fa-users"></i>
               <span>Games</span>
             </a>
             <div class="sidebar-submenu"
-              style="display:{{ Str::contains(Route::current()->getName(), 'game.') || Str::contains(Route::current()->getName(), 'option.') ? 'block' : 'none' }}">
+                 style="display:{{ Str::contains(Route::current()->getName(), 'game.') || Str::contains(Route::current()->getName(), 'option.') ? 'block' : 'none' }}">
               <ul class="p-0">
                 <li class="danger {{ Str::contains(Route::current()->getName(), 'game.') ? 'active' : '' }}">
                   <a href="{{ route('game.index') }}">
@@ -79,13 +91,13 @@
           </li>
 
           <li
-            class="dropdown danger sidebar-dropdown {{ Str::contains(Route::current()->getName(), 'user.') || Str::contains(Route::current()->getName(), 'preference.') ? 'active' : '' }}">
+              class="dropdown danger sidebar-dropdown {{ Str::contains(Route::current()->getName(), 'user.') || Str::contains(Route::current()->getName(), 'preference.') ? 'active' : '' }}">
             <a href="#">
               <i class="fas fa-fw fa-users"></i>
               <span>Users</span>
             </a>
             <div class="sidebar-submenu"
-              style="display:{{ Str::contains(Route::current()->getName(), 'user.') || Str::contains(Route::current()->getName(), 'preference.') ? 'block' : 'none' }}">
+                 style="display:{{ Str::contains(Route::current()->getName(), 'user.') || Str::contains(Route::current()->getName(), 'preference.') ? 'block' : 'none' }}">
               <ul class="p-0">
                 <li class="danger {{ Str::contains(Route::current()->getName(), 'user.') ? 'active' : '' }}">
                   <a href="{{ route('user.index') }}">
@@ -109,8 +121,12 @@
   </div>
 
   <div class="sidebar-footer">
-    <div class="text-white m-auto" id="toggle-theme" style="cursor: pointer" data-bs-toggle="tooltip"
-      data-bs-placement="top" title="Toggle {{ auth()->user()->getTheme() === 'light' ? 'dark' : 'light' }} mode">
+    <div class="text-white m-auto"
+         id="toggle-theme"
+         data-bs-toggle="tooltip"
+         data-bs-placement="top"
+         title="Toggle {{ auth()->user()->getTheme() === 'light' ? 'dark' : 'light' }} mode"
+         style="cursor: pointer">
       <i class="far fa-{{ auth()->user()->getTheme() === 'light' ? 'moon' : 'sun' }} m-auto"></i>
     </div>
   </div>

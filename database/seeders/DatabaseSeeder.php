@@ -6,7 +6,6 @@ use App\Models\Game;
 use App\Models\Option;
 use App\Models\Party;
 use App\Models\Preference;
-use App\Models\Property;
 use App\Models\Role;
 use App\Models\User;
 use App\Models\_Yams;
@@ -40,10 +39,10 @@ class DatabaseSeeder extends Seeder {
     // $user2->roles()->attach($player);
 
     // Preferences
-    Preference::create(['key' => 'lang', 'name' => 'Language', 'type' => 'checklist', 'options' => json_encode(['en' => 'English', 'fr' => 'French'])]);
+    // Preference::create(['key' => 'lang', 'name' => 'Language', 'type' => 'checklist', 'options' => json_encode(['en' => 'English', 'fr' => 'French'])]);
     Preference::create(['key' => 'theme', 'name' => 'Dark mode', 'type' => 'checklist', 'options' => json_encode(['dark' => 'Dark', 'light' => 'Light'])]);
-    Preference::create(['key' => 'table-length', 'name' => 'Table length', 'type' => 'checklist', 'options' => json_encode([10 => 10, 25 => 25, 50 => 50, 100 => 100])]);
-    Preference::create(['key' => 'timezone', 'name' => 'Timezone', 'type' => 'text']);
+    // Preference::create(['key' => 'table-length', 'name' => 'Table length', 'type' => 'checklist', 'options' => json_encode([10 => 10, 25 => 25, 50 => 50, 100 => 100])]);
+    // Preference::create(['key' => 'timezone', 'name' => 'Timezone', 'type' => 'text']);
 
     // Games
     $yams = Game::create(['key' => 'yams', 'name' => 'Yams', 'icon' => 'fas fa-dice', 'color' => '#660000']);

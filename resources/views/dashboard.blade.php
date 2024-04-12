@@ -5,7 +5,7 @@
     <div class="card-body">
 
       <h1 class="text-center">
-        <i class="{{ env('APP_ICON') }} me-2 fa-rotate-by"
+        <i class="{{ env('APP_ICON', 'fas fa-dice') }} me-2 fa-rotate-by"
            style="--fa-rotate-angle: -25deg;"></i>
         Welcome to {{ config('app.name') }}
       </h1>
