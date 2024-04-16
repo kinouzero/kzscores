@@ -13,6 +13,7 @@
     <script src="/npm/jquery/dist/jquery.min.js"></script>
     <script src="/npm/jquery-ui/dist/jquery-ui.min.js"></script>
     <script src="/npm/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="/npm/bootstrap5-toggle/js/bootstrap5-toggle.jquery.min.js"></script>
     <script src="/npm/datatables.net/js/dataTables.min.js"></script>
     <script src="/npm/datatables.net-bs5/js/dataTables.bootstrap5.min.js"></script>
     <script src="/npm/datatables.net-responsive/js/dataTables.responsive.min.js"></script>
@@ -23,6 +24,8 @@
 
     <!-- Styles -->
     <link href="/npm/bootstrap/dist/css/bootstrap.min.css"
+          rel="stylesheet">
+    <link href="/npm/bootstrap5-toggle/css/bootstrap5-toggle.min.css"
           rel="stylesheet">
     <link href="/npm/@fortawesome/fontawesome-free/css/all.min.css" rel="stylesheet">
     <link href="/npm/datatables.net-bs5/css/dataTables.bootstrap5.min.css" rel="stylesheet">

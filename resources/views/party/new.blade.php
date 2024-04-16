@@ -30,12 +30,17 @@
 
               <div
                    class="col order-3 order-sm-2 d-flex align-items-center justify-content-start justify-content-sm-center">
-                @include('template.form.switch', [
+                @include('template.form.toggle', [
                     'id' => 'random',
-                    'label' => 'Randomize players order',
+                    'label' => [
+                        'on' => "<span class='text-nowrap'>Random order</span>",
+                        'off' => "<span class='text-nowrap'>List order</span>",
+                    ],
+                    'name' => 'random',
                     'active' => false,
-                    'class' => ['label' => 'mb-0 ms-2 text-nowrap'],
-                    'extra' => ['input' => 'name="random"'],
+                    'color' => ['on' => 'primary', 'off' => 'secondary'],
+                    'class' => ['parent' => 'mt-3 mt-sm-0 ps-0'],
+                    'value' => null,
                 ])
               </div>
 
