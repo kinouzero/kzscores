@@ -86,13 +86,13 @@ class PartyController extends Controller {
 
     $args = $request->all();
 
+    $players = array_values(array_filter($args['players']));
+    if (count($players) < 2) return back()->withInput()->with('error', 'At least 2 players are required.');
+
     $validatedData = $request->validate(['game_id' => 'required|integer']);
 
     $party->game_id = $validatedData['game_id'];
     $party->save();
-    $players = array_values(array_filter($args['players']));
-
-    if (isset($args['random'])) shuffle($players);
 
     // Options
     if (isset($args['options'])) foreach ($args['options'] as $option_id => $value) {
@@ -100,8 +100,10 @@ class PartyController extends Controller {
       if ($option) $party->options()->attach($option, ['value' => $value]);
     }
 
+    // Random
+    if (isset($args['random'])) shuffle($players);
+
     // Players
-    if (!isset($players)) return back()->withInput()->with('error', 'No players selected.');
     foreach ($players as $i => $player) {
       $user = null;
       $order = $i + 1;
