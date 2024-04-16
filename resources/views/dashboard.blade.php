@@ -26,11 +26,22 @@
         </div>
         <div class="col">
           <div class="card flex-fill border-card ms-xs-3 mb-3"
-               style="--border-color:var(--bs-{{ $parties->count() > 0 ? 'success' : 'danger' }})">
+               style="--border-color:var(--bs-{{ $counts['actives'] > 0 ? 'success' : 'danger' }})">
             <div class="card-body d-flex flex-wrap align-items-center">
               <span class="text-nowrap">
-                <i class="far fa-circle-play me-2"></i>
-                {{ $parties->count() }} part{{ $parties->count() > 1 ? 'ies' : 'y' }} active
+                <i class="far fa-play me-2"></i>
+                {{ $counts['actives'] }} active{{ $counts['actives'] > 1 ? 's' : '' }} party
+              </span>
+            </div>
+          </div>
+        </div>
+        <div class="col">
+          <div class="card flex-fill border-card ms-xs-3 mb-3"
+               style="--border-color:var(--bs-{{ $counts['finished'] > 0 ? 'success' : 'danger' }})">
+            <div class="card-body d-flex flex-wrap align-items-center">
+              <span class="text-nowrap">
+                <i class="fas fa-flag-checkered me-2"></i>
+                {{ $counts['finished'] }} finished party
               </span>
             </div>
           </div>
@@ -41,7 +52,7 @@
         <div class="card">
           <div class="card-body pb-0">
 
-            <h4 class="text-center"><i class="fas fa-flag-checkered me-2"></i>New game</h4>
+            <h4 class="text-center"><i class="fas fa-gamepad me-2"></i>New game</h4>
 
             <hr />
 
@@ -63,19 +74,16 @@
         </div>
       @endif
 
-      @if ($parties->count() > 0)
+      @if ($actives->count() > 0)
         <div class="card mt-3">
           <div class="card-body pb-0">
 
-            <h4 class="text-center"><i class="far fa-circle-play me-2"></i>Parties active</h4>
+            <h4 class="text-center"><i class="far fa-play me-2"></i>Actives party</h4>
 
             <hr />
 
             <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3">
-              @foreach ($parties as $party)
-                @if ($party->winner())
-                  @continue
-                @endif
+              @foreach ($actives as $party)
                 <a class="col text-decoration-none"
                    href="{{ route('party.play', ['id' => $party->id]) }}">
                   <div class="card mb-3 border-card"
@@ -91,6 +99,51 @@
                             <div class="ms-2 me-auto {{ $user->id === $party->current()->id ? 'fw-bold' : '' }}">
                               @if ($user->id === $party->current()->id)
                                 <i class="fas fa-arrow-right me-2"></i>
+                              @endif
+                              {{ $user->name }}
+                            </div>
+                            <span
+                                  class="badge text-bg-{{ ($winner = App\Models\_Yams::getWinner($party)) ? ($winner->id === $user->id ? 'success' : 'danger') : 'secondary' }} rounded-pill">
+                              {{ App\Models\_Yams::calculTotal($user) }}
+                            </span>
+                          </li>
+                        @endforeach
+                      </ul>
+                    </div>
+                  </div>
+                </a>
+              @endforeach
+            </div>
+
+          </div>
+        </div>
+      @endif
+
+      @if ($finished->count() > 0)
+        <div class="card mt-3">
+          <div class="card-body pb-0">
+
+            <h4 class="text-center"><i class="fas fa-flag-checkered me-2"></i>Finished party</h4>
+
+            <hr />
+
+            <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3">
+              @foreach ($finished as $party)
+                <a class="col text-decoration-none"
+                   href="{{ route('party.play', ['id' => $party->id]) }}">
+                  <div class="card mb-3 border-card"
+                       style="--border-color:{{ $party->game->color }}">
+                    <div class="card-body">
+                      <div class="text-nowrap text-center">
+                        <i class="{{ $party->game->icon }} me-2"></i>{{ $party->game->name }}
+                      </div>
+                      <h6 class="small text-secondary my-2">Players :</h6>
+                      <ul class="list-group list-group-flush small">
+                        @foreach ($party->users()->get() as $user)
+                          <li class="list-group-item d-flex justify-content-between align-items-start">
+                            <div class="ms-2 me-auto {{ $user->id === $party->winner()->id ? 'fw-bold' : '' }}">
+                              @if ($user->id === $party->winner()->id)
+                                <i class="fas fa-trophy me-2"></i>
                               @endif
                               {{ $user->name }}
                             </div>

@@ -41,6 +41,13 @@ class Party extends Model {
   }
 
   /**
+   * Has winner
+   */
+  public function hasWinner() {
+    return $this->winner() !== null;
+  }
+
+  /**
    * Current
    */
   public function current() {
@@ -91,15 +98,5 @@ class Party extends Model {
     }
 
     $this->users()->updateExistingPivot($winner->id, ['winner' => true]);
-  }
-
-  /**
-   * Get user parties
-   */
-  public static function userParties() {
-    $userId = auth()->user()->id;
-    return static::whereHas('users', function ($query) use ($userId) {
-      $query->where('user_id', $userId);
-    })->get();
   }
 }

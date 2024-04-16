@@ -86,10 +86,10 @@ class PartyController extends Controller {
 
     $args = $request->all();
 
-    $players = array_values(array_filter($args['players']));
-    if (count($players) < 2) return back()->withInput()->with('error', 'At least 2 players are required.');
-
     $validatedData = $request->validate(['game_id' => 'required|integer']);
+
+    $players = array_unique(array_values(array_filter($args['players'])));
+    if (count($players) < 2) return back()->withInput()->with('error', 'At least 2 players are required.');
 
     $party->game_id = $validatedData['game_id'];
     $party->save();

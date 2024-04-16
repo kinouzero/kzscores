@@ -58,6 +58,38 @@ class User extends Authenticatable {
   }
 
   /**
+   * Parties
+   */
+  public function parties() {
+    return $this->belongsToMany(Party::class, 'party_users', 'user_id', 'party_id')->withPivot('order', 'score', 'current', 'winner');
+  }
+
+  /**
+   * Actives party
+   */
+  public function actives() {
+    $return = [];
+    foreach ($this->parties as $party) {
+      if (!$party->hasWinner()) $return[] = $party;
+    }
+    return collect($return);
+  }
+
+  /**
+   * Finished party
+   */
+  public function finished($take = null) {
+    $return = [];
+    $parties = $this->parties->sortByDesc('id');
+    if ($take) $parties = $parties->take($take);
+    foreach ($parties as $party) {
+      if ($party->hasWinner()) $return[] = $party;
+    }
+
+    return collect($return);
+  }
+
+  /**
    * Check if the user is an admin
    */
   public function isAdmin() {
