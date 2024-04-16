@@ -52,7 +52,8 @@
         <div class="d-flex">
           <button class="btn btn-outline-success ms-auto"
                   type="submit">
-            <i class="fas fa-rotate-left me-2"></i>Reset password
+            <i class="fas fa-rotate-left me-2"></i>
+            Reset password
           </button>
         </div>
       </form>

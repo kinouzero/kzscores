@@ -56,12 +56,16 @@
         <hr />
 
         <div class="d-flex align-items-center">
-          <span class="text-secondary small">Have an account? <a
-               class="link-success link-offset-2 link-underline-opacity-25 link-underline-opacity-100-hover"
-               href="{{ route('login') }}">Login</a></span>
+          <span class="text-secondary small">Have an account?
+            <a class="link-success ms-2 link-offset-2 link-underline-opacity-25 link-underline-opacity-100-hover"
+               href="{{ route('login') }}">
+              Login
+            </a>
+          </span>
           <button class="btn btn-outline-success ms-auto"
                   type="submit">
-            <i class="far fa-check me-2"></i>Register
+            <i class="far fa-check me-2"></i>
+            Register
           </button>
         </div>
       </form>

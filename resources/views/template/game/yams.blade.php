@@ -1,4 +1,4 @@
-<div class="card {{ $user->pivot->current ? 'border-success' : '' }}">
+<div class="card {{ $user->pivot->current ? 'border-success current-player' : '' }}">
   <div class="card-body">
 
     <div class="d-flex align-items-center">

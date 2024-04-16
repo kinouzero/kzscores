@@ -70,7 +70,7 @@ class User extends Authenticatable {
   public static function newPlayer($name) {
     $user = User::create([
       'name'     => $name,
-      'email'    => sprintf('%s@%s.com', $name, strtolower(env('APP_NAME'))),
+      'email'    => sprintf('%s@%s.com', $name, strtolower(env('APP_NAME', 'dummy'))),
       'password' => bcrypt($name),
     ]);
     $user->roles()->attach(Role::where('name', 'player')->first());

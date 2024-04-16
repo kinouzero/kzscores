@@ -20,6 +20,16 @@
 
       @vite(sprintf('resources/js/%s.js', $party->game->key))
 
+      <script>
+        window.onload = function() {
+          var el = document.querySelector('.current-player');
+          window.scrollTo({
+            top: el.offsetTop,
+            behavior: 'smooth'
+          });
+        }
+      </script>
+
     </div>
   </div>
 @endsection

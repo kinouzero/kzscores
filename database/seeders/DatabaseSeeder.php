@@ -21,14 +21,14 @@ class DatabaseSeeder extends Seeder {
     // User admin
     $user1 = User::factory()->create([
       'name' => env('SEEDER_USER_NAME', 'User 1'),
-      'email' => env('SEEDER_USER_MAIL', 'email@example.com'),
-      'password' => Hash::make(env('SEEDER_USER_PWD', 'user')),
+      'email' => env('SEEDER_USER_MAIL', 'user1@email.com'),
+      'password' => Hash::make(env('SEEDER_USER_PWD', 'user1')),
     ]);
 
     // $user2 = User::factory()->create([
     //   'name' => 'User 2',
-    //   'email' => 'email@example.com',
-    //   'password' => Hash::make('user'),
+    //   'email' => 'user2@email.com',
+    //   'password' => Hash::make('user2'),
     // ]);
 
     // Roles

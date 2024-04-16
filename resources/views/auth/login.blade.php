@@ -51,10 +51,13 @@
 
         <div class="d-flex align-items-center">
           <a class="link-secondary link-offset-2 link-underline-opacity-25 link-underline-opacity-100-hover small"
-             href="{{ route('forgot') }}">Forgot your password?</a>
+             href="{{ route('forgot') }}">
+            Forgot your password?
+          </a>
           <button class="btn btn-outline-success ms-auto"
                   type="submit">
-            <i class="fas fa-arrow-right-to-bracket me-2"></i>Login
+            <i class="fas fa-arrow-right-to-bracket me-2"></i>
+            Login
           </button>
         </div>
       </form>

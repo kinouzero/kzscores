@@ -8,13 +8,13 @@ class _Yams extends Model {
 
   const numbers = [1 => 'number-1', 2 => 'number-2', 3 => 'number-3', 4 => 'number-4', 5 => 'number-5', 6 => 'number-6'];
   const figures = [
-    'brelan' => ['label' => 'Brelan<span class="ms-2" style="font-size:.8em">(somme des dés avec 3 identiques)</span>', 'min' => 0, 'max' => 30],
-    'small-suite' => ['label' => 'Petite suite<span class="ms-2" style="font-size:.8em">(20)</span>', 'min' => 0, 'max' => 20, 'modulo' => 20],
-    'large-suite' => ['label' => 'Grande suite<span class="ms-2" style="font-size:.8em">(25)</span>', 'min' => 0, 'max' => 25, 'modulo' => 25],
-    'full' => ['label' => 'Full<spa class="ms-2" style="font-size:.8em"n>(30)</spa>', 'min' => 0, 'max' => 30, 'modulo' => 30],
-    'carre' => ['label' => 'Carré <span class="ms-2" style="font-size:.8em">(40)</span>', 'min' => 0, 'max' => 40, 'modulo' => 40],
-    'yams' => ['label' => 'Yams<span class="ms-2" style="font-size:.8em">(50)</span>', 'min' => 0, 'max' => 50, 'modulo' => 50],
-    'chance' => ['label' => 'Chance<span class="ms-2" style="font-size:.8em">(somme des dés)</span>', 'min' => 0, 'max' => 30]
+    'brelan' => ['label' => 'Brelan<span class="ms-1" style="font-size:.8em">(somme des dés avec 3 identiques)</span>', 'min' => 0, 'max' => 30],
+    'small-suite' => ['label' => 'Petite suite<span class="ms-1" style="font-size:.8em">(20)</span>', 'min' => 0, 'max' => 20, 'modulo' => 20],
+    'large-suite' => ['label' => 'Grande suite<span class="ms-1" style="font-size:.8em">(25)</span>', 'min' => 0, 'max' => 25, 'modulo' => 25],
+    'full' => ['label' => 'Full<spa class="ms-1" style="font-size:.8em"n>(30)</spa>', 'min' => 0, 'max' => 30, 'modulo' => 30],
+    'carre' => ['label' => 'Carré<span class="ms-1" style="font-size:.8em">(40)</span>', 'min' => 0, 'max' => 40, 'modulo' => 40],
+    'yams' => ['label' => 'Yams<span class="ms-1" style="font-size:.8em">(50)</span>', 'min' => 0, 'max' => 50, 'modulo' => 50],
+    'chance' => ['label' => 'Chance<span class="ms-1" style="font-size:.8em">(somme des dés)</span>', 'min' => 0, 'max' => 30]
   ];
 
   public static function getWinner($party) {
